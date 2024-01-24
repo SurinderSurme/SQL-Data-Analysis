@@ -1,18 +1,23 @@
+## Covid19-Data-Exploration-Project
+
+Identified current Covid-19 restrictions upliftment, analyzed covid-crisis till date including vaccination update. Extracted and explored data collected by another reliable source. Cleaned and formatted the data using Excel. Analyzed for getting insights using Structured Query Language. Designed interactive Tableau dashboard describing some key information about most affected countries, continents with most death rate, vaccine percent by population in the world.
+## All Covid Death Data
 select * 
 from [Portfolio Project]..['Covid Deaths$']
 order by 3, 4
 
-
+## All Covid Vaccine Data
 --select * 
 --from [Portfolio Project]..['Covid Vaccinations$']
 --order by 3, 4
 
-
+## Necessary Covid Death info
 select location ,date, total_cases, new_cases,total_deaths,population
 from [Portfolio Project]..['Covid Deaths$']
 order by 1,2
 
--- Looking at Total Cases vs Total Death
+## Looking at Total Cases vs Total Death
+
 SELECT 
     location,
     date,
@@ -24,8 +29,8 @@ where location like '%canada%'
 ORDER BY 1, 2;
 
 
--- Total cases vs Population
--- shows what percentage of population got covid
+## Total cases vs Population
+## shows what percentage of population got covid
 
 SELECT 
     location,
@@ -37,7 +42,7 @@ FROM [Portfolio Project]..['Covid Deaths$']
 where location like '%canada%'
 ORDER BY 1, 2;
 
--- Countries with highest infection rate compared to population 
+## Countries with highest infection rate compared to population 
 
 SELECT 
     location,
@@ -50,7 +55,7 @@ GROUP BY location, Population
 ORDER BY PercentPopulationInfected DESC;
 
 
----- Countries with Highest Death Count per Population
+## Countries with Highest Death Count per Population
 
 SELECT 
     Location,
@@ -61,9 +66,9 @@ WHERE continent IS NOT NULL
 GROUP BY location
 ORDER BY TotalDeathCount DESC;
 
--- BREAKING THINGS DOWN BY CONTINENT
+## BREAKING THINGS DOWN BY CONTINENT
 
--- Showing contintents with the highest death count per population
+## Showing contintents with the highest death count per population
 
 SELECT 
     continent,
@@ -75,7 +80,7 @@ GROUP BY continent
 ORDER BY TotalDeathCount DESC;
 
 
--- GLOBAL NUMBERS
+## GLOBAL NUMBERS
 
 Select SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage
 FROM [Portfolio Project]..['Covid Deaths$']
@@ -84,8 +89,8 @@ where continent is not null
 --Group By date
 order by 1,2
 
--- Total Population vs Vaccinations
--- Shows Percentage of Population that has recieved at least one Covid Vaccine
+## Total Population vs Vaccinations
+## Shows Percentage of Population that has recieved at least one Covid Vaccine
 
 SELECT 
     dea.continent,
